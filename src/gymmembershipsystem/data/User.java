@@ -191,4 +191,15 @@ public class User extends SQLConnection {
     }
   }
 
+  public void deleteUser(int userId) {
+    String query = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
+    try {
+      PreparedStatement preparedStatement = sqlConnection.prepareStatement(query);
+      preparedStatement.setInt(1, userId);
+      preparedStatement.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
 }

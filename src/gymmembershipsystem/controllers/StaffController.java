@@ -163,6 +163,24 @@ public class StaffController implements Initializable {
 
     });
 
+    userDeleteBtn.setOnAction(event -> {
+
+      // show alert warning
+
+      AppAlert.showAlert(AlertType.CONFIRMATION, "Confirmation", "Confirmation",
+          "Are you sure you want to delete this user?");
+
+      User userToDelete = new User();
+      try {
+        userToDelete.deleteUser(userIdToUpdate);
+        AppAlert.showAlert(AlertType.INFORMATION, "Success", "Success", "User deleted successfully");
+        initializedUsersTable();
+      } catch (Exception e) {
+        AppAlert.showAlert(null, "Error", "Error", "Something went wrong: " + e.getMessage());
+        e.printStackTrace();
+      }
+    });
+
   }
 
   public void initializedUserProgramsTable() {
