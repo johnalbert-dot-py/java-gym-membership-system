@@ -1,0 +1,22 @@
+.input {
+  -fx-background-color: #2c2c3a;
+  -fx-background-radius: 4px;
+  -fx-font-size: 13px;
+  -fx-text-fill: #ffffff99;
+  -fx-padding: 15px;
+  -fx-focus-traversable: false;
+}
+
+.input .text {
+  -fx-padding: 10px;
+}
+
+.input:focused {
+  -fx-text-fill: #ffffff;
+}
+
+.label .label {
+  -fx-text-fill: #0f0f0f;
+  -fx-font-size: 13px;
+  -fx-font-weight: bold;
+}
