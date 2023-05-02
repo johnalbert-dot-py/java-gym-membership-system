@@ -274,4 +274,26 @@ public class MemberProgram extends SQLConnection {
 
   }
 
+  public void updatePaymentStatus(int memberProgramId, String paymentStatus) throws Exception {
+    String query = "UPDATE MemberProgram SET payment_status = ? WHERE id = ?";
+
+    try {
+      PreparedStatement preparedStatement = sqlConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+      preparedStatement.setString(1, paymentStatus);
+      preparedStatement.setInt(2, memberProgramId);
+
+      int affectedRows = preparedStatement.executeUpdate();
+      // get the created id from the database
+
+      if (affectedRows == 0) {
+        throw new Exception("Updating payment status failed, no rows affected.");
+      }
+
+    } catch (SQLException e) {
+      throw new RuntimeException("There was an error on communicating with the database: " + e.getMessage());
+    } catch (Exception e) {
+      throw new RuntimeException("There was an error on updating payment status: " + e.getMessage());
+    }
+  }
+
 }

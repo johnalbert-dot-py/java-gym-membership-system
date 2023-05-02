@@ -138,6 +138,10 @@ public class StaffController implements Initializable {
     usersTable.getItems().clear();
     usersTable.setItems(users);
 
+    firstNameField1.setDisable(true);
+    lastNameField1.setDisable(true);
+    middleNameField1.setDisable(true);
+
     userUpdateBtn.setOnAction(event -> {
       System.out.println("Clicked");
       User userToUpdate = new User();
@@ -182,6 +186,23 @@ public class StaffController implements Initializable {
 
     userProgramsTable.getItems().clear();
     userProgramsTable.setItems(userPrograms);
+
+    memberUpdateBtn.setOnAction(event -> {
+      MemberProgram memberProgramToUpdate = new MemberProgram();
+      try {
+        memberProgramToUpdate.updatePaymentStatus(memberIdToUpdate, programChoice.getValue().toString());
+        AppAlert.showAlert(AlertType.INFORMATION, "Success", "Success", "Member Program updated successfully");
+        initializedUserProgramsTable();
+      } catch (NumberFormatException e) {
+        // alert
+        AppAlert.showAlert(AlertType.ERROR, "Error", "Invalid Input", "Please check your input: " + e.getMessage());
+        e.printStackTrace();
+      } catch (Exception e) {
+        AppAlert.showAlert(null, "Error", "Error", "Something went wrong: " + e.getMessage());
+        e.printStackTrace();
+      }
+    });
+
   }
 
   public void initialize(URL url, ResourceBundle rb) {
