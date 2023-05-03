@@ -102,7 +102,9 @@ public class SignUpController implements Initializable {
 
     birthdate = birthdateField.getValue();
     String gender = genderField.getText();
-    int role = 0;
+
+    // TODO: THIS ONE IS FOR REGISTRATION AS STAFF OR AS A MEMBER ONLY
+    int role = 1; // 0 FOR STAFF, 1 FOR MEMBER
 
     User user = new User();
 
