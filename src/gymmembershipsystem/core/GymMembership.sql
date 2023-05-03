@@ -109,13 +109,16 @@ CREATE TABLE
         `payment_type` VARCHAR(255) NOT NULL,
         `program_id` INT NOT NULL,
         PRIMARY KEY (`id`),
-        INDEX `fk_member_program_member_idx` (`member_id` ASC) VISIBLE,
-        INDEX `fk_member_program_program_idx` (`program_id` ASC) VISIBLE,
         CONSTRAINT `fk_member_program_member` FOREIGN KEY (`member_id`) REFERENCES `Member` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
         CONSTRAINT `fk_member_program_program` FOREIGN KEY (`program_id`) REFERENCES `Program` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
     );
 
 ALTER TABLE `Member` MODIFY COLUMN `start_date` DATE NULL;
+
+ALTER TABLE
+    `MemberProgram` MODIFY CONSTRAINT `memberprogram_ibfk_2` FOREIGN KEY (`program_id`) REFERENCES `program` (`id`) on DELETE CASCADE;
+
+-- modify contstraint
 
 ALTER TABLE `Member` MODIFY COLUMN `end_date` DATE NULL;
 
